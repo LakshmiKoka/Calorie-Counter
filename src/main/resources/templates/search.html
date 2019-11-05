@@ -9,35 +9,13 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<div>
-    <label th:for="dateTime"> Select Date and Time</label>
-    <div class="container">
-        <div class="row">
-            <div class='col-sm-6'>
-                <div class="form-group">
-                    <div class='input-group date' id='datetimepicker1'>
-                        <input type='text' class="form-control" />
-                        <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                    </div>
-                </div>
-            </div>
-            <script type="text/javascript">
-                $(function () {
-                    $('#datetimepicker1').datetimepicker();
-                });
-            </script>
-        </div>
+<form method ="post" th:object="${search}">
+    <div>
+        <label th:for="searchTerm">Enter the Product name</label>
+        <input th:type="text" th:field="*{query}">
     </div>
-<!--    <span th:errors="*{dateTime}" class="error"></span>-->
-</div>
+    <input type="submit" value="Search">
+</form>
 
-<div>
-    <label th:for="searchTerm">Enter the Product name</label>
-    <input th:type="text" th:name="searchTerm">
-</div>
-
-<input type="submit" value="Search">
 </body>
 </html>

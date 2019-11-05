@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+<!--/*@thymesVar id="title" type=""*/-->
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+<form method="post" style="max-width:600px;" th:object="${search}">
+<div>
+
+    <ul>
+        <li th:each="item : ${result.getResults()}">
+            <input type="radio" th:field="*{selected}" th:value="${item.getId()}" th:id="${item.getId()}"/>
+            <label th:for="${item.getId()}" th:text="${item.getTitle()}"></label>
+        </li>
+    </ul>
+</div>
+</form>
+</body>
+</html>
