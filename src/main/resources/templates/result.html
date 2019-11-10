@@ -4,20 +4,26 @@
 
 <body class="container">
 
-<!--/*@thymesVar id="title" type=""*/-->
+
 <h1 th:text="${title}">Default Title</h1>
 
 <nav th:replace="fragments :: navigation"></nav>
-<form method="post" style="max-width:600px;" th:object="${search}">
+<br />
+
+<form method="post" style="max-width:600px;" th:object="${search}" action="/selected">
+
 <div>
 
     <ul>
         <li th:each="item : ${result.getResults()}">
-            <input type="radio" th:field="*{selected}" th:value="${item.getId()}" th:id="${item.getId()}"/>
+            <input type="radio" th:field="*{itemId}" th:value="${item.getId()}" th:id="${item.getId()}"/>
             <label th:for="${item.getId()}" th:text="${item.getTitle()}"></label>
         </li>
     </ul>
+
 </div>
+    <input type="submit" value="Nutrition Details" >
 </form>
+
 </body>
 </html>

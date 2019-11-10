@@ -16,7 +16,9 @@ public class SearchService {
     private Environment environment;
 
 
-    private static String url = "https://api.spoonacular.com/recipes/search?apiKey={apiKey}&query={query}";
+    private static String url1 = "https://api.spoonacular.com/recipes/search?apiKey={apiKey}&query={query}";
+
+    private static String url2 = "https://api.spoonacular.com/recipes/{id}/nutritionWidget.json?apiKey={apiKey}";
 
     public SearchResult search(String searchTerm){
 
@@ -26,10 +28,26 @@ public class SearchService {
         queryParams.put("apiKey", environment.getProperty("api.key"));
         queryParams.put("query", searchTerm);
 
-        SearchResult result = restTemplate.getForObject(url, SearchResult.class, queryParams);
+        SearchResult result = restTemplate.getForObject(url1, SearchResult.class, queryParams);
 
         return result;
 
 
     }
+
+    public SearchResult search2(String itemId){
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        Map<String, String> queryParams = new HashMap<>();
+        queryParams.put("id", itemId);
+        queryParams.put("apiKey", environment.getProperty("api.key"));
+
+        SearchResult result = restTemplate.getForObject(url2, SearchResult.class, queryParams);
+
+        System.out.println(result);
+        return result;
+
+    }
 }
+

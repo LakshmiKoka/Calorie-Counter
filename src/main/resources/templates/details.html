@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+<br />
+
+<h3>Calories for <span th:text="${search.title}">title</span></h3>
+
+<form method="post" th:object="${search}">
+
+    <table>
+        <tr>
+            <td><label th:for="calories" >Calories :</label></td>
+            <td><input type="text"  th:value="${result.getCalories()}" th:name="calories"/></td>
+    </tr>
+
+    <tr>
+        <td><label th:for="carbs" >Carbs :</label></td>
+       <td> <input type="text"  th:value="${result.getCarbs()}" th:name="carbs"/></td>
+    </tr>
+
+    <tr>
+        <td><label th:for="fat" >Fat :</label></td>
+        <td><input type="text"  th:value="${result.getFat()}" th:name="fat"/></td>
+    </tr>
+
+    <tr>
+        <td><label th:for="protein" >Protein :</label></td>
+        <td><input type="text"  th:value="${result.getProtein()}" th:name="protein"/></td>
+    </tr>
+
+    </table>
+    <label for="date-time">Choose date and time:</label>
+
+    <input type="datetime-local" id="date-time"
+           name="date-time" value="2019-11-09T16:30"
+           min="2019-11-09T00:00" max="2020-11-14T00:00">
+
+    <br/>
+
+
+    <input type="submit" value="Save Details" >
+</form>
+</body>
+</html>

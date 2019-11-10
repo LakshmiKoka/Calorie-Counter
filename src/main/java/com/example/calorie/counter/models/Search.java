@@ -4,7 +4,11 @@ public class Search {
 
     private String query;
 
-    private int selected;
+    private String itemId;
+
+    private String title;
+
+
 
     public Search() {
     }
@@ -17,11 +21,27 @@ public class Search {
         this.query = query;
     }
 
-    public int getSelected() {
-        return selected;
+    public String getItemId() {
+        return itemId;
     }
 
-    public void setSelected(int selected) {
-        this.selected = selected;
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Override
+    public String toString() {
+        return "Search{" +
+                "query='" + query + '\'' +
+                ", itemId='" + itemId + '\'' +
+                '}';
     }
 }
