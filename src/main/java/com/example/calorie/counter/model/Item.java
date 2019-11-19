@@ -1,4 +1,4 @@
-package com.example.calorie.counter.models;
+package com.example.calorie.counter.model;
 
 public class Item {
 

@@ -1,40 +1,18 @@
-package com.example.calorie.counter.models;
+package com.example.calorie.counter.model;
 
-import java.util.Arrays;
 import java.util.List;
 
-public class SearchResult {
-
-
-    public SearchResult() {
-    }
-
-    private List<Item> results;
-    private String baseUri;
-
+public class ItemDetailsResult {
 
     private String calories;
     private String carbs;
     private String fat;
     private String protein;
+    private List<Detail> bad;
+    private List<Detail> good;
+    private int itemid;
 
-
-
-
-    public List<Item> getResults() {
-        return results;
-    }
-
-    public void setResults(List<Item> results) {
-        this.results = results;
-    }
-
-    public String getBaseUri() {
-        return baseUri;
-    }
-
-    public void setBaseUri(String baseUri) {
-        this.baseUri = baseUri;
+    public ItemDetailsResult() {
     }
 
     public String getCalories() {
@@ -69,15 +47,39 @@ public class SearchResult {
         this.protein = protein;
     }
 
+    public List<Detail> getBad() {
+        return bad;
+    }
+
+    public void setBad(List<Detail> bad) {
+        this.bad = bad;
+    }
+
+    public List<Detail> getGood() {
+        return good;
+    }
+
+    public void setGood(List<Detail> good) {
+        this.good = good;
+    }
+
+    public int getItemid() {
+        return itemid;
+    }
+
+    public void setItemid(int itemid) {
+        this.itemid = itemid;
+    }
+
     @Override
     public String toString() {
-        return "SearchResult{" +
-                "results=" + results +
-                ", baseUri='" + baseUri + '\'' +
-                ", calories='" + calories + '\'' +
+        return "ItemDetailsResult{" +
+                "calories='" + calories + '\'' +
                 ", carbs='" + carbs + '\'' +
                 ", fat='" + fat + '\'' +
                 ", protein='" + protein + '\'' +
+                ", bad=" + bad +
+                ", good=" + good +
                 '}';
     }
 }

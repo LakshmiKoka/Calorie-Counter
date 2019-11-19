@@ -1,6 +1,7 @@
 package com.example.calorie.counter.services;
 
-import com.example.calorie.counter.models.SearchResult;
+import com.example.calorie.counter.model.ItemDetailsResult;
+import com.example.calorie.counter.model.ItemSearchResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class SearchService {
 
     private static String url2 = "https://api.spoonacular.com/recipes/{id}/nutritionWidget.json?apiKey={apiKey}";
 
-    public SearchResult search(String searchTerm){
+    public ItemSearchResult search(String searchTerm){
 
         RestTemplate restTemplate = new RestTemplate();
 
@@ -28,14 +29,14 @@ public class SearchService {
         queryParams.put("apiKey", environment.getProperty("api.key"));
         queryParams.put("query", searchTerm);
 
-        SearchResult result = restTemplate.getForObject(url1, SearchResult.class, queryParams);
+        ItemSearchResult result = restTemplate.getForObject(url1, ItemSearchResult.class, queryParams);
 
         return result;
 
 
     }
 
-    public SearchResult search2(String itemId){
+    public ItemDetailsResult search2(String itemId){
 
         RestTemplate restTemplate = new RestTemplate();
 
@@ -43,9 +44,8 @@ public class SearchService {
         queryParams.put("id", itemId);
         queryParams.put("apiKey", environment.getProperty("api.key"));
 
-        SearchResult result = restTemplate.getForObject(url2, SearchResult.class, queryParams);
+        ItemDetailsResult result = restTemplate.getForObject(url2, ItemDetailsResult.class, queryParams);
 
-        System.out.println(result);
         return result;
 
     }

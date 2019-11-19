@@ -1,4 +1,4 @@
-package com.example.calorie.counter.models;
+package com.example.calorie.counter.model;
 
 public class Search {
 
@@ -8,6 +8,7 @@ public class Search {
 
     private String title;
 
+    private String dateTime;
 
 
     public Search() {
@@ -37,11 +38,12 @@ public class Search {
         this.title = title;
     }
 
-    @Override
-    public String toString() {
-        return "Search{" +
-                "query='" + query + '\'' +
-                ", itemId='" + itemId + '\'' +
-                '}';
+    public String getDateTime() {
+        return dateTime;
     }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
+    }
+
 }

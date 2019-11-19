@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+<br />
+
+<h3>Calories for <span th:text="${search.title}">title</span></h3>
+
+<form method="post" th:object="${search}" action="/save">
+
+    <h5>Calories: <span th:text="${result.getCalories()}">calories</span></h5>
+
+    <h5>Carbs: <span th:text="${result.getCarbs()}">carbs</span></h5>
+
+    <h5>Fat: <span th:text="${result.getFat()}">fat</span></h5>
+
+    <h5>Protein: <span th:text="${result.getProtein()}">protein</span></h5>
+
+    <h5>Protein: <span th:text="${result.getProtein()}">protein</span></h5>
+
+
+    <h5> Bad: </h5>
+    <ul>
+        <li th:each="item : ${result.getBad()}">
+            <h5> Title: <span th:text="${item.getTitle()}">title</span></h5>
+            <h5> Amount: <span th:text="${item.getAmount()}">amount</span></h5>
+            <h5> Indented: <span th:text="${item.getIndented()}">indented</span></h5>
+            <h5> PercentOfDailyNeeds: <span th:text="${item.getPercentOfDailyNeeds()}">percentOfDailyNeeds</span></h5>
+        </li>
+    </ul>
+
+    <h5> Good: </h5>
+    <ul>
+        <li th:each="item : ${result.getGood()}">
+            <h5> Title: <span th:text="${item.getTitle()}">title</span></h5>
+            <h5> Amount: <span th:text="${item.getAmount()}">amount</span></h5>
+            <h5> Indented: <span th:text="${item.getIndented()}">indented</span></h5>
+            <h5> PercentOfDailyNeeds: <span th:text="${item.getPercentOfDailyNeeds()}">percentOfDailyNeeds</span></h5>
+        </li>
+    </ul>
+
+    <label for="date-time">Choose date and time:</label>
+
+    <input type="datetime-local" id="date-time"
+           name="date-time"th:field="*{dateTime}">
+    <br/>
+    <input type="submit" value="Save Details" >
+</form>
+</body>
+</html>
