@@ -1,22 +1,22 @@
-package com.example.calorie.counter.models;
+package com.example.calorie.counter.model;
 
-import java.util.Arrays;
+import java.util.List;
 
-public class SearchResult {
+public class ItemSearchResult {
 
 
-    public SearchResult() {
+    public ItemSearchResult() {
     }
 
-    private Item[] results;
+    private List<Item> results;
     private String baseUri;
 
 
-    public Item[] getResults() {
+    public List<Item> getResults() {
         return results;
     }
 
-    public void setResults(Item[] results) {
+    public void setResults(List<Item> results) {
         this.results = results;
     }
 
@@ -30,8 +30,8 @@ public class SearchResult {
 
     @Override
     public String toString() {
-        return "SearchResult{" +
-                "results=" + Arrays.toString(results) +
+        return "ItemSearchResult{" +
+                "results=" + results +
                 ", baseUri='" + baseUri + '\'' +
                 '}';
     }
