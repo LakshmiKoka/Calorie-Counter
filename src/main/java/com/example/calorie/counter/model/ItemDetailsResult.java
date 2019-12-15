@@ -10,7 +10,7 @@ public class ItemDetailsResult {
     private String protein;
     private List<Detail> bad;
     private List<Detail> good;
-    private int itemid;
+
 
     public ItemDetailsResult() {
     }
@@ -63,13 +63,6 @@ public class ItemDetailsResult {
         this.good = good;
     }
 
-    public int getItemid() {
-        return itemid;
-    }
-
-    public void setItemid(int itemid) {
-        this.itemid = itemid;
-    }
 
     @Override
     public String toString() {
