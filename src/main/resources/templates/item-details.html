@@ -1,56 +1,95 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
+<style>
+    table, th, td {
+        border: 1px white;
+        padding: 5px;
+    }
+</style>
 
 <body class="container">
-
 
 <h1 th:text="${title}">Default Title</h1>
 
 <nav th:replace="fragments :: navigation"></nav>
 <br />
 
-<h3>Calories for <span th:text="${search.title}">title</span></h3>
+<h3>Nutrition details of <br><span th:text="${search.title}">title  </span><br></h3><br />
 
 <form method="post" th:object="${search}" action="/save">
 
-    <h5>Calories: <span th:text="${result.getCalories()}">calories</span></h5>
+    <table style="float: right" >
+        <tr>
+            <td><label for="date-time">Choose date and time:</label></td>
+            <td><input type="datetime-local" id="date-time"
+                       name="date-time"th:field="*{dateTime}"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Save Details" ></td>
+        </tr>
+    </table>
 
-    <h5>Carbs: <span th:text="${result.getCarbs()}">carbs</span></h5>
+    <h4><b>Calories: </b><span th:text="${result.getCalories()}">calories</span></h4>
 
-    <h5>Fat: <span th:text="${result.getFat()}">fat</span></h5>
+    <h4><b>Carbs: </b><span th:text="${result.getCarbs()}">carbs</span></h4>
 
-    <h5>Protein: <span th:text="${result.getProtein()}">protein</span></h5>
+    <h4><b>Fat: </b><span th:text="${result.getFat()}">fat</span></h4>
 
-    <h5>Protein: <span th:text="${result.getProtein()}">protein</span></h5>
+    <h4><b>Protein: </b><span th:text="${result.getProtein()}">protein</span></h4><br />
 
 
-    <h5> Bad: </h5>
-    <ul>
-        <li th:each="item : ${result.getBad()}">
-            <h5> Title: <span th:text="${item.getTitle()}">title</span></h5>
-            <h5> Amount: <span th:text="${item.getAmount()}">amount</span></h5>
-            <h5> Indented: <span th:text="${item.getIndented()}">indented</span></h5>
-            <h5> PercentOfDailyNeeds: <span th:text="${item.getPercentOfDailyNeeds()}">percentOfDailyNeeds</span></h5>
-        </li>
-    </ul>
+    <h4><b> Bad </b></h4>
 
-    <h5> Good: </h5>
-    <ul>
-        <li th:each="item : ${result.getGood()}">
-            <h5> Title: <span th:text="${item.getTitle()}">title</span></h5>
-            <h5> Amount: <span th:text="${item.getAmount()}">amount</span></h5>
-            <h5> Indented: <span th:text="${item.getIndented()}">indented</span></h5>
-            <h5> PercentOfDailyNeeds: <span th:text="${item.getPercentOfDailyNeeds()}">percentOfDailyNeeds</span></h5>
-        </li>
-    </ul>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Amount</th>
+            <th>Indented</th>
+            <th>PercentOfDailyNeeds</th>
+        </tr>
+        <tr th:each="item : ${result.getBad()}">
+            <td>
+                <span th:text="${item.getTitle()}">title</span>
+            </td>
+            <td>
+                <span th:text="${item.getAmount()}">amount</span>
+            </td>
+            <td>
+                <span th:text="${item.getIndented()}">indented</span>
+            </td>
+            <td>
+                <span th:text="${item.getPercentOfDailyNeeds()}">percentOfDailyNeeds</span>
+            </td>
+        </tr>
+    </table><br />
 
-    <label for="date-time">Choose date and time:</label>
+    <h4><b> Good </b></h4>
 
-    <input type="datetime-local" id="date-time"
-           name="date-time"th:field="*{dateTime}">
-    <br/>
-    <input type="submit" value="Save Details" >
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Amount</th>
+            <th>Indented</th>
+            <th>PercentOfDailyNeeds</th>
+        </tr>
+        <tr th:each="item : ${result.getGood()}">
+            <td>
+                <span th:text="${item.getTitle()}">title</span>
+            </td>
+            <td>
+                <span th:text="${item.getAmount()}">amount</span>
+            </td>
+            <td>
+                <span th:text="${item.getIndented()}">indented</span>
+            </td>
+            <td>
+                <span th:text="${item.getPercentOfDailyNeeds()}">percentOfDailyNeeds</span>
+            </td>
+        </tr>
+    </table>
+
+
 </form>
 </body>
 </html>

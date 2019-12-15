@@ -5,12 +5,12 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <changeSet id="1" author="liquibase" >
-        <createTable tableName="consumption" >
+    <changeSet id="2" author="liquibase" >
+        <createTable tableName="food_item" >
             <column name="id" type="BINARY(16)" />
-            <column name="user_id" type="VARCHAR(36)"/>
-            <column name="date_time" type="DATETIME"/>
             <column name="item_id" type="VARCHAR(12)"/>
+            <column name="item_title" type="VARCHAR(36)"/>
+            <column name="image" type="TEXT"/>
 
 
         </createTable>

@@ -1,5 +1,7 @@
 package com.example.calorie.counter.model;
 
+import java.util.Date;
+
 public class Search {
 
     private String query;
