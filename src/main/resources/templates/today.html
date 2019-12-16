@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
+<head th:replace="fragments :: head">
+    <style>
+        table, th, td {
+            border: 1px white;
+            padding: 10px;
+        }
+    </style>
+</head>
 
 <body class="container">
 
@@ -8,20 +15,27 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<div>
-    <h3>Daily-Calorie-Data</h3>
-    <table>
+<!--<form method="post" th:object="${dateTitleInfo}" action="/daily-calorie">-->
+    <table >
         <tr>
             <th>DateTime</th>
             <th>Product Name</th>
-            <th>Image</th>
+            <th>Calories</th>
+            <th>Carbs</th>
+            <th>Fat</th>
+            <th>Protein</th>
         </tr>
-        <tr>
-
+        <tr th:each="item : ${dateTitleInfos}">
+            <td><span th:text="${item.getDate()}"></span></td>
+            <td><span th:text="${item.getTitle()}"></span></td>
+            <td><span th:text="${item.getCalories()}"></span></td>
+            <td><span th:text="${item.getCarbs()}"></span></td>
+            <td><span th:text="${item.getFat()}"></span></td>
+            <td><span th:text="${item.getProtein()}"></span></td>
         </tr>
     </table>
+<!--</form>-->
 
-</div>
 
 </body>
 </html>

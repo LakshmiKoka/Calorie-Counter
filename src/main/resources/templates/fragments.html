@@ -5,14 +5,19 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
     <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
+<style>
+    table, th, td {
+        border: 1px white;
+        padding: 10px;
+    }
+</style>
 </head>
 <body>
 
 <nav th:fragment="navigation">
     <a href="/">Home</a> |
     <a href="/search">Search Food</a> |
-    <a href="/">Daily Calorie Data</a>
+    <a href="/daily-calorie">Daily Calorie Data</a>
     <a style="float: right" href= "/">Logout</a>
 </nav>
 

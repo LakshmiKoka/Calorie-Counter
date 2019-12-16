@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -6,8 +5,12 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <include file="/db/changelog/scripts/create-consumption-table.xml"/>
-    <include file="/db/changelog/scripts/create-fooditem-table.xml"/>
-    <include file="/db/changelog/scripts/create-consumption-details-table.xml"/>
-    <include file="/db/changelog/scripts/alter-fooditem-table.xml"/>
+    <changeSet id="5" author="liquibase" >
+        <modifyDataType
+            columnName="item_title"
+            newDataType="varchar(200)"
+            tableName="food_item"/>
+    </changeSet>
+
+
 </databaseChangeLog>

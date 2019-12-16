@@ -24,6 +24,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Controller
@@ -179,7 +180,7 @@ public class CalorieController {
 
     }
     @RequestMapping(value = "daily-calorie", method=RequestMethod.GET)
-    public String viewDailyCalorie(Model model, Search search){
+    public String viewDailyCalorie(Model model){
 
         OffsetDateTime date = OffsetDateTime.now().minusDays(3);
         List<Consumption> consumptionList = consumptionDao.findByDateTimeAfter(date);
@@ -192,6 +193,13 @@ public class CalorieController {
 
             List<FoodItem> foodItems = fooditemDao.findByItemIdIn(itemIds);
 
+            List<UUID> consumptionIds = consumptionList.stream()
+                    .map(consumption -> consumption.getId())
+                    .collect(Collectors.toList());
+
+//            List<ConsumptionDetails> consumptionDetails = consumptiondetailsDao.findByConsumptionIdIn(consumptionIds);
+
+
             for (Consumption consumption : consumptionList) {
                 DateTitleInfo dateTitleInfo = new DateTitleInfo();
                 dateTitleInfo.setDate(consumption.getDateTime());
@@ -199,17 +207,38 @@ public class CalorieController {
                 Optional<FoodItem> food = foodItems.stream()
                         .filter(foodItem -> foodItem.getItemId().equals(consumption.getItemId()))
                         .findFirst();
-
                 if (food.isPresent()) {
-                    dateTitleInfo.setImage(food.get().getImage());
                     dateTitleInfo.setTitle(food.get().getItemTitle());
+
+                    ConsumptionDetails calories = consumptiondetailsDao
+                            .findByConsumptionIdAndCategoryType(consumption.getId(), "Calories");
+
+                    dateTitleInfo.setCalories(calories.getCategoryValue());
+
+                    ConsumptionDetails carbs = consumptiondetailsDao
+                            .findByConsumptionIdAndCategoryType(consumption.getId(), "Carbs");
+
+                    dateTitleInfo.setCarbs(carbs.getCategoryValue());
+
+                    ConsumptionDetails fat = consumptiondetailsDao
+                            .findByConsumptionIdAndCategoryType(consumption.getId(), "Fat");
+
+                    dateTitleInfo.setFat(fat.getCategoryValue());
+
+                    ConsumptionDetails protein = consumptiondetailsDao
+                            .findByConsumptionIdAndCategoryType(consumption.getId(), "Protein");
+
+                    dateTitleInfo.setProtein(protein.getCategoryValue());
+
                 }
 
                 dateTitleInfos.add(dateTitleInfo);
             }
         }
+    model.addAttribute("title","Daily Calorie Data");
+    model.addAttribute("dateTitleInfos", dateTitleInfos);
 
 
-        return "today";
+    return "today";
     }
 }
