@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.print.attribute.standard.PresentationDirection;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.time.Instant;
@@ -176,13 +177,13 @@ public class CalorieController {
         consumptionList.add(protein);
         consumptiondetailsDao.saveAll(consumptionList);
 
-        return "search";
+        return "redirect:/daily-calorie";
 
     }
     @RequestMapping(value = "daily-calorie", method=RequestMethod.GET)
     public String viewDailyCalorie(Model model){
 
-        OffsetDateTime date = OffsetDateTime.now().minusDays(3);
+        OffsetDateTime date = OffsetDateTime.now().minusDays(7);
         List<Consumption> consumptionList = consumptionDao.findByDateTimeAfter(date);
         List<DateTitleInfo> dateTitleInfos = new ArrayList<>();
 
@@ -237,7 +238,6 @@ public class CalorieController {
         }
     model.addAttribute("title","Daily Calorie Data");
     model.addAttribute("dateTitleInfos", dateTitleInfos);
-
 
     return "today";
     }
