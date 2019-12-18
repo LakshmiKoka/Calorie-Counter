@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 import java.util.UUID;
 
 @Entity
@@ -17,8 +18,11 @@ public class User {
     @Column(columnDefinition="BINARY(16)")
     private UUID id;
 
-    private String userId;
+    @NotEmpty
+    @Column(nullable = false, unique = true)
+    private String username;
 
+    @NotEmpty
     private String password;
 
     public User() {
@@ -32,12 +36,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

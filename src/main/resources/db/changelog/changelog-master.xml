@@ -10,4 +10,5 @@
     <include file="/db/changelog/scripts/create-fooditem-table.xml"/>
     <include file="/db/changelog/scripts/create-consumption-details-table.xml"/>
     <include file="/db/changelog/scripts/alter-fooditem-table.xml"/>
+    <include file="/db/changelog/scripts/create-user-table.xml"/>
 </databaseChangeLog>
