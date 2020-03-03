@@ -183,7 +183,7 @@ public class CalorieController {
     @RequestMapping(value = "daily-calorie", method=RequestMethod.GET)
     public String viewDailyCalorie(Model model){
 
-        OffsetDateTime date = OffsetDateTime.now().minusDays(7);
+        OffsetDateTime date = OffsetDateTime.now().minusDays(100);
         List<Consumption> consumptionList = consumptionDao.findByDateTimeAfter(date);
         List<DateTitleInfo> dateTitleInfos = new ArrayList<>();
 
